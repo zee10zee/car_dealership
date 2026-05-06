@@ -1,7 +1,7 @@
 import { Link, router } from "expo-router";
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import logo from "@/assets/images/icon.png"
+import logo from "@/assets/images/car.png"
 
 import {FontAwesome6} from '@expo/vector-icons'
   import Animated, { 
@@ -15,8 +15,6 @@ import {FontAwesome6} from '@expo/vector-icons'
 } from 'react-native-reanimated';
 
 import { useEffect } from 'react';
-
-
  const carPosition = useSharedValue(-50); // Start from left
   const carRotation = useSharedValue(0);
 
@@ -58,7 +56,9 @@ export default function Index() {
 
   return (
     <SafeAreaView style = {{flex : 1}}>
+
       <View style = {style.container}>
+        <Text className="name text[50] " style = {{fontSize : 24, fontFamily : 'montserrat', fontWeight : '200'}}> Car Dealership! </Text>
          <View className="logo-container">
            <Image source = {logo} style = {style.logo} />
          </View>
@@ -73,8 +73,8 @@ export default function Index() {
           </Text>
 
          </View>
-          <Pressable onPress={() => router.push('/home')} style = {{ marginTop : 20}}>
-            <Text style = {{backgroundColor : 'lightgreen', padding : 6, borderRadius : 10,}}>Get Started !</Text>
+          <Pressable onPress={() => router.push('/home')} >
+            <Text className="bg-orange-50" >Get Started !</Text>
           </Pressable>
       </View>
     </SafeAreaView>
@@ -98,7 +98,7 @@ const style = StyleSheet.create({
     marginTop : '-90'
   },
 
-  logo : {width : 200, height : 200}, 
+  logo : {width : 150, height : 150, borderRadius : 999}, 
   carAnimation : {position : 'relative', left : '-50'},
   title : {marginTop : '80'}
 })
