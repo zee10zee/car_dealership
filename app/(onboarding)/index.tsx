@@ -18,6 +18,13 @@ import { useEffect } from 'react';
  const carPosition = useSharedValue(-50); // Start from left
   const carRotation = useSharedValue(0);
 
+/**
+ * Renders the onboarding screen with an animated car indicator and navigation to the home route.
+ *
+ * Sets up continuous horizontal and rotational animations for the car icon and cancels those animations on unmount.
+ *
+ * @returns A JSX element containing the onboarding UI.
+ */
 export default function Index() {
 
 //  function AnimatedOnboarding() {

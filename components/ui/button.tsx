@@ -90,6 +90,14 @@ const buttonTextVariants = cva(
 
 type ButtonProps = React.ComponentProps<typeof Pressable> & React.RefAttributes<typeof Pressable> & VariantProps<typeof buttonVariants>;
 
+/**
+ * Render a styled Pressable button and provide matching text style classes to descendants via TextClassContext.
+ *
+ * @param className - Additional class names to apply to the button container
+ * @param variant - Visual variant to apply from `buttonVariants` (e.g., "default", "destructive", "outline", "secondary", "ghost", "link")
+ * @param size - Size variant to apply from `buttonVariants` (e.g., "default", "sm", "lg", "icon")
+ * @returns A JSX element containing a Pressable wrapped with a TextClassContext provider that supplies button text classes
+ */
 function Button({ className, variant, size, ...props }: ButtonProps) {
   return (
     <TextClassContext.Provider value={buttonTextVariants({ variant, size })}>
