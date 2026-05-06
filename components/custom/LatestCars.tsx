@@ -1,36 +1,35 @@
-import { Dimensions, FlatList, Image, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
+import { Dimensions, FlatList, Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
-import { SearchBar } from 'react-native-screens';
 import { LatestCars } from '@/lib/data/data';
+import { useCarousel } from '@/context/ScrollIindexContext';
 
-
-const Carousel = ({ cars }: { cars: LatestCars[] }) => {
+const Carousel = () => {
+const {cars, currentIndex, scrollToIndex , flatListRef, setCurrentIndex} = useCarousel()
 
  const { width } = Dimensions.get("window"); // Get screen width
-const [currentIndex, setCurrentIndex] = useState(0)
 const scrollInterVal = useRef<NodeJS.Timeout | null>(null)
-const flastListRef = useRef<FlatList>(null)
 
  const startAutoScroll = ()=>{
    if(scrollInterVal.current) clearInterval(scrollInterVal.current);
     
   // auto start interval
   scrollInterVal.current = setInterval(()=>{
-
-    if(currentIndex < cars.length - 1){
-      flastListRef.current?.scrollToIndex({
-        index : currentIndex + 1,
+      setCurrentIndex((prevIndex) =>{
+        if(prevIndex < cars.length - 1){
+        flatListRef.current?.scrollToIndex({
+        index : prevIndex + 1,
         animated : true
       })
-      setCurrentIndex(currentIndex + 1)       
-   }else{
+      return prevIndex + 1
+      }else{
      //  start over from the beginning
-      flastListRef.current?.scrollToIndex({
-        index : 0,
-        animated : true
+      flatListRef.current?.scrollToIndex({
+               index : 0,
+              animated : false
+            })
+            return 0
+        }
       })
-      setCurrentIndex(0)  
-   }
   }, 3000)
 }
 
@@ -52,9 +51,9 @@ const flastListRef = useRef<FlatList>(null)
  },[])
 
   return (
-    <View className=' mt-10 gap-3'>
+    <View className='flex-1 mt-10 gap-3'>
 
-      <FlatList ref = {flastListRef} 
+      <FlatList ref = {flatListRef} 
         data={cars}
         keyExtractor ={(car)=>car.id}
         pagingEnabled
@@ -73,6 +72,8 @@ const flastListRef = useRef<FlatList>(null)
          >
 
       </FlatList>
+
+      
     </View>
   );
 };

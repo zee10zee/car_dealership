@@ -9,6 +9,8 @@ import LatestCar from '@/components/custom/LatestCars'
 import SearchBar from '@/components/custom/SearchBar'
 import EmptyLatestCars from '@/components/custom/EmptyLatestCars'
 import Carousel from '@/components/custom/LatestCars'
+import DotsIndicator from '@/components/custom/DotsIndicator'
+import { CarouselProvider } from '@/context/ScrollIindexContext'
 
 const Home = () => {
 
@@ -18,7 +20,10 @@ const Home = () => {
 
        <View className='flex-1 z-10 p-4 mt-6 items-center justify-center'>
           <SearchBar />
-          <Carousel cars = {latestCars} />
+           <CarouselProvider>
+             <Carousel  />
+             <DotsIndicator />
+           </CarouselProvider>
        </View>
     </SafeAreaView>
     
