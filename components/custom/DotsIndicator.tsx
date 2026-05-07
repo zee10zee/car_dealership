@@ -10,7 +10,7 @@ const {currentIndex, setCurrentIndex,scrollInterVal, flatListRef, scrollToIndex,
   return (
     <View>
       {/* Dots Indicator */}
-      <View className="flex-row justify-center items-center mt-2 ">
+      <View className="flex-row justify-center items-center pb-10 ">
         {cars.map((_, index) => (
           <TouchableOpacity key={index} onPress={() => scrollToIndex(index)}>
             <View

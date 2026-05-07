@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -11,6 +11,7 @@ import EmptyLatestCars from '@/components/custom/EmptyLatestCars'
 import Carousel from '@/components/custom/LatestCars'
 import DotsIndicator from '@/components/custom/DotsIndicator'
 import { CarouselProvider } from '@/context/ScrollIindexContext'
+import Cars from '@/components/custom/Cars'
 
 const Home = () => {
 
@@ -18,13 +19,25 @@ const Home = () => {
     <SafeAreaView className='bg-orange-300 flex-1'>
        <StatusBar style="light" backgroundColor='#000' />
 
-       <View className='flex-1 z-10 p-4 mt-6 items-center justify-center'>
+       <ScrollView className='flex-1 z-10' 
+          contentContainerStyle = {{justifyContent : 'center', alignItems : 'center'}}>
           <SearchBar />
-           <CarouselProvider>
+           
+           <View className="coursel h-96 w-[98%]">
+            <CarouselProvider>
              <Carousel  />
              <DotsIndicator />
            </CarouselProvider>
-       </View>
+           </View>
+
+
+           <View className="cars flex-1 w-full">
+            <Cars />
+           </View>
+
+          
+
+       </ScrollView>
     </SafeAreaView>
     
   )

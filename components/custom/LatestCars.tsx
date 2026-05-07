@@ -1,7 +1,8 @@
-import { Dimensions, FlatList, Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native'
+import { Dimensions, FlatList, Image, ScrollViewBase, ScrollViewComponent, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { LatestCars } from '@/lib/data/data';
 import { useCarousel } from '@/context/ScrollIindexContext';
+import { ScrollView } from 'react-native';
 
 const Carousel = () => {
 const {cars, currentIndex, scrollToIndex , flatListRef, setCurrentIndex} = useCarousel()
@@ -51,8 +52,8 @@ const scrollInterVal = useRef<NodeJS.Timeout | null>(null)
  },[])
 
   return (
-    <View className='flex-1 mt-10 gap-3'>
-
+    <ScrollView className='flex-1 mt-10 gap-3 w-full'>
+      <Text className='font-[20]'>Latest Cars on Sale !</Text>
       <FlatList ref = {flatListRef} 
         data={cars}
         keyExtractor ={(car)=>car.id}
@@ -62,7 +63,7 @@ const scrollInterVal = useRef<NodeJS.Timeout | null>(null)
         snapToAlignment="start"  // ← CRITICAL: Snap to start of each item
         showsHorizontalScrollIndicator = {false}
         renderItem={({item})=> (
-           <View className="image py-3" style = {{width : width}}>
+           <View className="" style = {{width : width}}>
               <Image className='w-full h-60 rounded-[10]' 
                  source ={typeof item === 'string' ?  {uri : item} : item.images[0]}
                  resizeMode='cover' />
@@ -74,7 +75,7 @@ const scrollInterVal = useRef<NodeJS.Timeout | null>(null)
       </FlatList>
 
       
-    </View>
+    </ScrollView>
   );
 };
 
