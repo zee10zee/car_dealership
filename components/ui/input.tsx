@@ -1,6 +1,13 @@
 import { cn } from '@/lib/utils';
 import { Platform, TextInput } from 'react-native';
 
+/**
+ * A TextInput wrapper that applies a consistent baseline style, merges platform-specific classes, and handles the non-editable visual/interaction state.
+ *
+ * @param className - Optional additional class names to append to the computed input classes
+ * @param props - All other TextInput props (including `editable`) are forwarded to the underlying TextInput
+ * @returns The underlying TextInput React element with the merged `className` and forwarded props
+ */
 function Input({ className, ...props }: React.ComponentProps<typeof TextInput> & React.RefAttributes<TextInput>) {
   return (
     <TextInput

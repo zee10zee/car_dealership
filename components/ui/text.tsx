@@ -64,6 +64,16 @@ const ARIA_LEVEL: Partial<Record<TextVariant, string>> = {
 
 const TextClassContext = React.createContext<string | undefined>(undefined);
 
+/**
+ * Renders text with variant-driven styling and optional asChild composition.
+ *
+ * Renders an RNText (or Slot when `asChild` is true) with classes produced by the selected `variant`, any classes provided via TextClassContext, and the `className` prop. For heading-like variants the component sets an appropriate accessibility `role` and `aria-level`.
+ *
+ * @param asChild - When true, uses `Slot` to render a custom child element; otherwise uses `RNText`.
+ * @param variant - Visual variant to apply; determines the generated classes and accessibility mappings.
+ * @param className - Additional class names appended to the computed variant and context classes.
+ * @returns A React element that displays styled text according to the chosen variant.
+ */
 function Text({
   className,
   asChild = false,
